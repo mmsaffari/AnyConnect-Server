@@ -1,19 +1,19 @@
 # AnyConnect-Server
 
-[English Version](/README.EN.md)
-
 Installation Script for Cisco AnyConnect
 
-Linux 快速部署思科 AnyConnect 服务器
+Deploy a Cisco AnyConnect compactable ocserv server on Linux (Tested on Debian)
 
-得用 Ubuntu
+**USE Debian**
 
-使用方法：
+Feel free to open issues! :)
+
+## Usage
 
 ```bash
-wget -N --no-check-certificate https://raw.githubusercontent.com/sfc9982/AnyConnect-Server/main/ocserv.sh
-chmod +x ocserv.sh
-bash ocserv.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/mmsaffari/AnyConnect-Server/main/ocserv-en.sh
+chmod +x ocserv-en.sh
+bash ocserv-en.sh
 ```
 
 Also see this: https://github.com/mmtaee/ocserv-users-management
