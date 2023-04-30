@@ -69,10 +69,10 @@ Get_ip(){
     fi
 }
 Download_ocserv(){
-    mkdir "ocserv" && cd "ocserv"
+    mkdir "ocserv" && cd "ocserv" || exit
     wget "ftp://ftp.infradead.org/pub/ocserv/ocserv-${ocserv_ver}.tar.xz"
     [[ ! -s "ocserv-${ocserv_ver}.tar.xz" ]] && echo -e "${Error} ocserv source download failed!" && rm -rf "ocserv/" && rm -rf "ocserv-${ocserv_ver}.tar.xz" && exit 1
-    tar -xJf "ocserv-${ocserv_ver}.tar.xz" && cd "ocserv-${ocserv_ver}"
+    tar -xJf "ocserv-${ocserv_ver}.tar.xz" && cd "ocserv-${ocserv_ver}" || exit
     ./configure
     make
     make install
@@ -363,7 +363,7 @@ Set_Pass(){
 ————————
  ${Green_font_prefix} 3.${Font_color_suffix} Enable/Disable users
  
- NOTICE：After these operations, restart is NOT needed !" && echo
+ NOTICE: After these operations, restart is NOT needed !" && echo
     read -e -p "(Default: Cancel):" set_num
     [[ -z "${set_num}" ]] && echo "Canceled..." && exit 1
     if [[ ${set_num} == "0" ]]; then
@@ -382,7 +382,7 @@ View_Config(){
     Get_ip
     Read_config
     clear && echo "===================================================" && echo
-    echo -e " AnyConnect Conf：" && echo
+    echo -e " AnyConnect Conf: " && echo
     echo -e " I  P\t\t  : ${Green_font_prefix}${ip}${Font_color_suffix}"
     echo -e " TCP Port\t  : ${Green_font_prefix}${tcp_port}${Font_color_suffix}"
     echo -e " UDP Port\t  : ${Green_font_prefix}${udp_port}${Font_color_suffix}"
@@ -393,7 +393,7 @@ View_Config(){
 }
 View_Log(){
     [[ ! -e ${log_file} ]] && echo -e "${Error} ocserv log doesn't exist !" && exit 1
-    echo && echo -e "${Tip} Press ${Red_font_prefix}Ctrl+C${Font_color_suffix} Stop View log" && echo -e "If you want to View all log, please use ${Red_font_prefix}cat ${log_file}${Font_color_suffix} command。" && echo
+    echo && echo -e "${Tip} Press ${Red_font_prefix}Ctrl+C${Font_color_suffix} Stop View log" && echo -e "If you want to View all log, please use ${Red_font_prefix}cat ${log_file}${Font_color_suffix} command. " && echo
     tail -f ${log_file}
 }
 Uninstall_ocserv(){
@@ -454,7 +454,7 @@ Set_iptables(){
     sysctl -p
     ifconfig_status=$(ifconfig)
     if [[ -z ${ifconfig_status} ]]; then
-        echo -e "${Error} ifconfig 未install !"
+        echo -e "${Error} ifconfig not installed !"
         read -e -p "Please input your interface name manully(eth0 ens3 enpXsX venet0):" Network_card
         [[ -z "${Network_card}" ]] && echo "Canceled..." && exit 1
     else
@@ -491,7 +491,7 @@ Update_Shell(){
         Service_ocserv
     fi
     wget -N --no-check-certificate "https://raw.githubusercontent.com/mmsaffari/AnyConnect-Server/main/ocserv.sh" && chmod +x ocserv.sh
-    echo -e "already latest[ ${sh_new_ver} ] !(WARN：may come out some warnings, just ignore them)" && exit 0
+    echo -e "already latest[ ${sh_new_ver} ] !(WARN: may come out some warnings, just ignore them)" && exit 0
 }
 
 # Start Execution
@@ -561,4 +561,4 @@ case "$num" in
     echo "Please input current number [0-9]"
     ;;
 esac
-set 限制解除 
+set remove limitation
